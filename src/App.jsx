@@ -27,7 +27,7 @@ export default function App() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("submit");
+    // console.log("submit");
     if (formData.password === formData.passwordConfirm) {
       if(formData.okayToEmail) console.log("Thanks for signing up for our newsletter!");
       console.log("Successfully signed up");
@@ -37,7 +37,7 @@ export default function App() {
   }
 
   function handleChange(event) {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     const { name, value, checked, type } = event.target;
     setFormData((prev) => {
       return {
