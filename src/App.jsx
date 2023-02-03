@@ -18,26 +18,33 @@ import "./App.css";
  */
 
 export default function App() {
-
   const [formData, setFormData] = useState({
     email: "",
-    password: '',
-    passwordConfirm: '',
-  })
+    password: "",
+    passwordConfirm: "",
+    okayToEmail: false,
+  });
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log('submit');
+    console.log("submit");
+    if (formData.password === formData.passwordConfirm) {
+      if(formData.okayToEmail) console.log("Thanks for signing up for our newsletter!");
+      console.log("Successfully signed up");
+    }
+    else console.log("passwords to not match");
+
   }
 
   function handleChange(event) {
-    console.log(event.target.value)
-    setFormData(prev => {
+    console.log(event.target.value);
+    const { name, value, checked, type } = event.target;
+    setFormData((prev) => {
       return {
         ...prev,
-        [event.target.name]: event.target.value,
-      }
-    })
+        [name]: type === "checkbox" ? checked : value,
+      };
+    });
   }
 
   return (
@@ -50,6 +57,7 @@ export default function App() {
           name="email"
           value={formData.email}
           onChange={handleChange}
+          required
         />
         <input
           type="password"
@@ -58,6 +66,7 @@ export default function App() {
           name="password"
           value={formData.password}
           onChange={handleChange}
+          required
         />
         <input
           type="password"
@@ -66,10 +75,17 @@ export default function App() {
           name="passwordConfirm"
           value={formData.passwordConfirm}
           onChange={handleChange}
+          required
         />
 
         <div className="form--marketing">
-          <input id="okayToEmail" type="checkbox" />
+          <input
+            id="okayToEmail"
+            type="checkbox"
+            name="okayToEmail"
+            checked={formData.okayToEmail}
+            onChange={handleChange}
+          />
           <label htmlFor="okayToEmail">I want to join the newsletter</label>
         </div>
         <button className="form--submit">Sign up</button>
