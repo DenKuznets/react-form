@@ -32,7 +32,7 @@ export default function App() {
       if(formData.okayToEmail) console.log("Thanks for signing up for our newsletter!");
       console.log("Successfully signed up");
     }
-    else console.log("passwords to not match");
+    else console.log("passwords do not match");
 
   }
 
